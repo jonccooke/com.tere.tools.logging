@@ -26,6 +26,32 @@ public abstract class Logger<T>
 	// Log a MAX_DEBUG message.
 	abstract public  void trace(String msg);
 
+	public void log(Level level, String fmt, Object... args)
+	{
+		switch (level)
+		{
+		case debug:
+			debug(fmt, args);
+			break;
+		case info:
+			info(fmt, args);
+			break;
+		case warning:
+			warning(fmt, args);
+			break;
+		case error:
+			error(fmt, args);
+			break;
+		case trace:
+			debug(fmt, args);
+			break;
+		case critical:
+			critical(fmt, args);
+			break;
+		}
+		trace(formatString(fmt, args));
+	}
+
 	public  void trace(String fmt, Object... args)
 	{
 		trace(formatString(fmt, args));
